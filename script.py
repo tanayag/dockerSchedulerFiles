@@ -6,7 +6,7 @@ import time
 from dask.distributed import Client
 
 
-client = Client('tcp://')
+client = Client('tcp://172.16.90.147:8786')
 
 
 def demo():
