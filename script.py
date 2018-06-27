@@ -7,10 +7,10 @@ from dask.distributed import Client
 
 
 client = Client('tcp://172.17.0.2:8786')
+df = pd.read_csv("train.csv")
 
-
-def demo():
-    df = pd.read_csv("train.csv")
+def demo(df):
+    
 
     X = df.drop(labels = 'Activity',axis = 1)
 
@@ -25,8 +25,8 @@ def demo():
     return score
 
 start = time.time()
-
-output = client.submit(demo)
+big_future = Client.scatter(df)
+output = client.submit(demo,big_future)
 outcome=output.result()
 # outcome = client.gather(output)
 print(outcome)
