@@ -25,7 +25,7 @@ def demo(df):
     return score
 
 start = time.time()
-big_future = Client.scatter(df)
+big_future = client.scatter(df)
 output = client.submit(demo,big_future)
 outcome=output.result()
 # outcome = client.gather(output)
